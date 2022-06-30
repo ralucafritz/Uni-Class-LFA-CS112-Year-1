@@ -1,0 +1,15 @@
+# Formal Languages and Automata CS112 - Lectures
+
+- [x] [Lecture 1](lecture1.pdf)
+- [x] [Lecture 2](lecture2.pdf)
+- [x] [Lecture 3](lecture3.pdf)
+- [x] [Lecture 4](lecture4.pdf)
+- [x] [Lecture 5](lecture5.pdf)
+- [x] [Lecture 6](lecture6.pdf)
+- [x] [Lecture 7](lecture7.pdf)
+- [x] [Lecture 8](lecture8.pdf)
+- [x] [Lecture 9](lecture9.pdf)
+- [x] [Lecture 10](lecture10.pdf)
+- [x] [Lecture 11](lecture11.pdf)
+- [x] [Lecture 12](lecture12.pdf)
+- [x] [Lecture 13](lecture13.pdf)

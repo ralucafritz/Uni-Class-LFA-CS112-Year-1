@@ -1,0 +1,51 @@
+# Echipa formata din:
+#           Capmare Alex
+#           Butelca Radu
+#           Fritz Raluca
+
+#
+#  am folosit un config cat mai usor pentru a testa daca functioneaza
+#  astfel incat toate inputurile care au mai mult de,sau fix  zero-uri vor fi acceptate
+#  iar '0' va fi respins
+#
+States:
+	q1
+	q2
+	q_accept
+	q_reject
+End
+
+Input alphabet:
+	0
+End
+
+Tape alphabet:
+	0
+	x
+	_
+End
+
+Transitions:
+#   schimbam valorile in x si mutam capatul 1 in dreapta si capatul 2 in stanga
+	q1 q2 0 0 x x R L
+#   schimbam valorile in x si mutam capatele in pozitiile initiale
+	q2 q1 0 0 x x L R
+#   este respins cazul in care capatul 1 ajunge la sectiunea de blank space
+	q2 q_reject _ x _ x N N
+#   sunt acceptate toate celelalte cazuri
+	q1 q_accept x x x x N N
+	q2 q_accept x x x x N N
+
+End
+#### starea initiala
+Start state:
+    q1
+End
+#### starea accepta
+Accept state:
+    q_accept
+End
+#### starea respinsa
+Reject state:
+    q_reject
+End

@@ -1,0 +1,35 @@
+#
+# commentariu 1
+#
+Start:
+    S
+End
+#
+# commentariu 2
+#
+Epsilon:
+    0
+End
+#
+# commentariu 3
+#
+Terminals:
+    a
+    b
+    c
+End
+#
+# commentariu 4
+#
+Nonterminals:
+    A
+    B
+    C
+End
+#
+#
+Productions:
+    S ABAC
+    A aAb|0
+    B bC
+End

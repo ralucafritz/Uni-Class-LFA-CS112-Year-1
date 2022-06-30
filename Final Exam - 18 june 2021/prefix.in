@@ -1,0 +1,90 @@
+# Echipa formata din:
+#           Capmare Alex
+#           Butelca Radu
+#           Fritz Raluca
+
+States:
+	q1
+	q2
+	qInt
+	q_accept
+	q_reject
+End
+#
+#   pentru ca programul nostru ignora toate liniile care incep cu # am inlocuit #-ul din cerinta cu '/'
+#
+Input alphabet:
+	a
+	b
+	/
+End
+
+### pt input am testat pentru: ab/a w = ab w' = a , ab/ , abbbba/abb , abba/ba si toate au fost acceptate
+### sau respinse conform cerintelor cerute: daca nu corespunde prefixul sau daca dupa / nu este niciun
+### simbol (adica este blank space) sau w este mai lung ca w' => este respins
+
+Tape alphabet:
+	a
+	b
+	/
+	_
+End
+
+Transitions:
+#
+#   mutam capul din dreapta pana la /
+#
+	q1 q1 a a a a N L
+	q1 q1 b b b b N L
+	q1 q1 a b a b N L
+	q1 q1 b a b a N L
+	q1 qInt a / a / N R
+	q1 qInt b / b / N R
+#
+#   cand capul din dreapta ajunge la /, pornim cu ambele capete catre dreapta
+#   si se va trece printr-o stare intermediara(qInt) pentru a testa daca exista vreun simbol dupa / (adica w' != vid)
+#   daca urmatorul simbol dupa / este _ (blank space) => reject
+#   daca urmatorul simbol dupa / este diferit de sibolul corespunzator capatului 1 => reject
+#   daca urmatorul simbol dupa / corespunde simbolului capatului 1 => trece in q2 si face teste similare
+#
+    qInt q2 a a a a R R
+    qInt q2 b b b b R R
+
+#   REJECT QINT:
+
+    qInt q_reject a b a b N N
+    qInt q_reject b a b a N N
+    qInt q_reject a _ a _ N N
+    qInt q_reject b _ b _ N N
+#
+#
+	q2 q2 a a a a R R
+	q2 q2 b b b b R R
+#
+#   daca: literele nu sunt identice / capatul 1 ajunge la / iar capatul 2 inca mai are litere =>
+#                                                                    =>  cuvantul este respins
+#   daca: capatul din dreapta ajunge la zona cu blank spaces -> cuvantul este acceptat =>
+#                                                                   => w' este prefix pentru w
+#   ACCEPT / REJECT Q2:
+#
+	q2 q_accept a _ a _ N N
+	q2 q_accept b _ b _ N N
+	q2 q_reject a b a b N N
+	q2 q_reject / _ / _ N N
+	q2 q_reject b a b a N N
+	q2 q_reject / a / a N N
+	q2 q_reject / b / b N N
+
+End
+#### starea initiala
+Start state:
+    q1
+End
+#### starea accepta
+Accept state:
+    q_accept
+End
+#### starea respinsa
+Reject state:
+    q_reject
+End

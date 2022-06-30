@@ -1,0 +1,67 @@
+# Echipa formata din:
+#           Capmare Alex
+#           Butelca Radu
+#           Fritz Raluca
+
+States:
+	q1
+	q2
+	q_accept
+	q_reject
+End
+#
+#   am gandit input-ul sub forma: aaaa/aaaaaa (4 + 6 = 10) adica a de x ori si a de y ori
+#   unde x si y sunt numere natural, despartite de un /
+#
+Input alphabet:
+	a
+	/
+End
+
+Tape alphabet:
+	a
+	/
+	_
+End
+
+Transitions:
+#
+#   tinem capatul 1 pe loc si deplasam capatul 2 pana la /
+#
+    q1 q1 a a a a N L
+#
+#   in momentul in care ajungem la / deplasam capatul 1 pana la / si tinem capatul 2 pe loc
+#
+    q1 q1 a / a / R N
+#
+#   cand ajungem cu ambele capete pe pozitia unde se afla / => mutam capatul 1 un simbol la dreapta
+#
+    q1 q2 / / / / R N
+#
+#   dupa ce mutam capatul 1 la dreapta, mergem concomitent cu cele doua capete o casuta la dreapta
+#   si interschimbam valorile (din a devine / si din / devine a) astfel incat mutam / spre finalul
+#   inputului din tape
+#
+    q2 q2 a / / a R R
+#
+#   in momentul in care capatul 1 ajunge la sectiunea de blank spaces => se modifica / in blank space,
+#   se accepta cuvantul si se afiseaza la linia 142 din codul exercitiului nr 2 schimbadu-se valoarea
+#   blank spaces ('_') in spatiu normal (' ') pentru a putea fi vizualizat cuvantul final. numarul de simboluri
+#   pe care il are acest cuvant reprezinta suma a 2 numere naturale
+#
+    q2 q_accept _ / _ _ N N
+
+
+End
+#### starea initiala
+Start state:
+    q1
+End
+#### starea accepta
+Accept state:
+    q_accept
+End
+#### starea respinsa
+Reject state:
+    q_reject
+End
